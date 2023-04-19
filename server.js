@@ -6,12 +6,20 @@ require("dotenv").config();
 const database = require("./config/database");
 database.connect();
 
+const userRouter = require("./routes/userRouter");
+const bookRouter = require("./routes/bookRouter");
+const orderRouter = require("./routes/orderRouter");
+
 const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "dist")));
+
+app.use("/api/users", userRouter);
+app.use("/api/book", bookRouter);
+app.use("/api/order", orderRouter);
 
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
