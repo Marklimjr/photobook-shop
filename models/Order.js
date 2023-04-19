@@ -1,6 +1,22 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const Book = require("./Book");
+const itemSchema = require("./itemSchema");
+
+const lineItemSchema = new Schema(
+  {
+    qty: {
+      type: Number,
+      default: 1,
+    },
+    item: itemSchema,
+  },
+  {
+    timestamps: {
+      createdAt: "created_at",
+      updatedAt: "updated_at",
+    },
+  }
+);
 
 const orderSchema = new Schema(
   {
@@ -10,7 +26,7 @@ const orderSchema = new Schema(
       required: true,
     },
 
-    lineItems: [Book],
+    lineItems: [lineItemSchema],
 
     isPaid: { type: Boolean, default: false },
   },
@@ -21,21 +37,6 @@ const orderSchema = new Schema(
     },
 
     toJSON: { virtuals: true },
-  }
-);
-
-const Book = new Schema(
-  {
-    qty: {
-      type: Number,
-      default: 1,
-    },
-  },
-  {
-    timestamps: {
-      createdAt: "created_at",
-      updatedAt: "updated_at",
-    },
   }
 );
 
