@@ -7,6 +7,7 @@ import MainStore from '../Pages/MainStore/MainStore';
 import ProdMgmt from '../Pages/ProdMgmt/ProdMgmt';
 import NewProdForm from '../Components/NewProduct/NewProdForm';
 import ModifyProduct from '../Components/ModifyProduct/ModifyProduct';
+import ProductIndex from '../Components/ModifyProduct/ProductIndex';
 
 
 const App = () => {
@@ -19,7 +20,8 @@ const App = () => {
 
           <Route path="/admin" element={<ProdMgmt />} />
           <Route path="/admin/new" element={<NewProdForm />} />
-          <Route path="/admin/edit" element={<ModifyProduct />} />
+          <Route path="/admin/:id/edit" element={<ModifyProduct />} />
+          <Route path="/admin/index" element={<ProductIndex />} />
 
         </Routes>
       </BrowserRouter>

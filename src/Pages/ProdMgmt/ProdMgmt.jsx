@@ -9,7 +9,7 @@ const ProdMgmt = () => {
                     <h1>Create New Product</h1>
                 </Link>
 
-                <Link to="/admin/edit">
+                <Link to="/admin/index">
                     <h1>Manage Existing Product</h1>
                 </Link>
         </div>

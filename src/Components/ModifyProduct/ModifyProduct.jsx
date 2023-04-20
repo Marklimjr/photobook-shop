@@ -5,18 +5,17 @@ import { useNavigate } from 'react-router-dom';
 
 
 const ModifyProduct = () => {
-
-  const [books, setBooks] = useState([]);
-  
-  const addBook = (book) => setBooks([book,...books]); // add book
+  const { id } = useParams();
+  const [books, setBooks] = useState({});
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchBook = async () => {
       const response = await fetch(`/api/books/${id}`);
-      const book = await response.json();
+      const books = await response.json();
       setBooks(books);
+      console.log("this" + {id})
     };
     fetchBook();
   }, [id]);
@@ -50,7 +49,7 @@ const ModifyProduct = () => {
                         type="text" 
                         name="bookImg" 
                         onChange={handleChange}
-                        value={data.bookImg}/>
+                        value={books.bookImg}/>
                     </label>
                     <br></br>
                     <label>
@@ -59,7 +58,7 @@ const ModifyProduct = () => {
                         type="text" 
                         name="bookTitle" 
                         onChange={handleChange}
-                        value={data.bookTitle}/>
+                        value={books.bookTitle}/>
                     </label>
                     <br></br>
                     <label>
@@ -68,7 +67,7 @@ const ModifyProduct = () => {
                         type="text" 
                         name="author" 
                         onChange={handleChange}
-                        value={data.author}/>
+                        value={books.author}/>
                     </label>
                     <br></br>
                     <label>
@@ -77,7 +76,7 @@ const ModifyProduct = () => {
                         type="text" 
                         name="publisher" 
                         onChange={handleChange}
-                        value={data.publisher}/>
+                        value={books.publisher}/>
                     </label>
                     <br></br>
                     <label>
@@ -88,7 +87,7 @@ const ModifyProduct = () => {
                         type="text" 
                         name="writeUp" 
                         onChange={handleChange}
-                        value={data.writeUp}/>
+                        value={books.writeUp}/>
                     </label>
                     <br></br>
                     <label>
@@ -97,7 +96,7 @@ const ModifyProduct = () => {
                         type="number" 
                         name="price" 
                         onChange={handleChange}
-                        value={data.price}/>
+                        value={books.price}/>
                     </label>
                     <br></br>
                     <label>
@@ -106,7 +105,7 @@ const ModifyProduct = () => {
                         type="number" 
                         name="quantity" 
                         onChange={handleChange}
-                        value={data.quantity}/>
+                        value={books.quantity}/>
                     </label>
                     <br></br>
                     <label>
@@ -115,7 +114,7 @@ const ModifyProduct = () => {
                         type="text" 
                         name="tags" 
                         onChange={handleChange}
-                        value={data.tags}/>
+                        value={books.tags}/>
                     </label>
                     <br></br>
                     <button type="submit" onClick={handleUpdate}>Update Product Information</button>

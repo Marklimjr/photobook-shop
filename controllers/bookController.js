@@ -29,11 +29,9 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    const updatedArtwork = await Book.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true }
-    );
+    const updatedBook = await Book.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
     res.status(200).send(updatedBook);
   } catch (error) {
     res.status(400).json({ error: error.message });
