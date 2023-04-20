@@ -4,7 +4,9 @@ import { Routes, Route } from "react-router-dom";
 
 
 import MainStore from '../Pages/MainStore/MainStore';
-
+import ProdMgmt from '../Pages/ProdMgmt/ProdMgmt';
+import NewProdForm from '../Components/NewProduct/NewProdForm';
+import ModifyProduct from '../Components/ModifyProduct/ModifyProduct';
 
 
 const App = () => {
@@ -14,6 +16,10 @@ const App = () => {
        <Routes>
 
           <Route path="/" element={<MainStore />} />
+
+          <Route path="/admin" element={<ProdMgmt />} />
+          <Route path="/admin/new" element={<NewProdForm />} />
+          <Route path="/admin/edit" element={<ModifyProduct />} />
 
         </Routes>
       </BrowserRouter>
