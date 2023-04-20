@@ -1,5 +1,6 @@
 import React from 'react';
 import NavBar from '../../Components/NavBar/NavBar';
+import ProductGrid from '../../Components/Product/ProductGrid';
 
 const MainStore = () => {
     return (
@@ -7,6 +8,7 @@ const MainStore = () => {
         <div>
             <NavBar />
                 <h1>Main Store Page</h1>
+                <ProductGrid />
         </div>
     );
 };
