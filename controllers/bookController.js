@@ -8,6 +8,16 @@ const show = async (req, res) => {
   }
 };
 
+const create = async (req, res) => {
+  try {
+    const createdBook = await Book.create(req.body);
+    res.status(200).send(createdBook);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 module.exports = {
   show,
+  create,
 };

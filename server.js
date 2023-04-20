@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "dist")));
 
 app.use("/api/users", userRouter);
-app.use("/api/book", bookRouter);
+app.use("/api/books", bookRouter);
 app.use("/api/order", orderRouter);
 
 app.get("/*", function (req, res) {

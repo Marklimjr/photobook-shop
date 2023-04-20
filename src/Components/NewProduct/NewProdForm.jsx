@@ -1,15 +1,24 @@
 import React from 'react';
 import { useState } from "react"
+import { useNavigate } from 'react-router-dom';
+
 
 const NewProdForm = () => {
 
+  const [books, setBooks] = useState([]);
+  
+  const addBook = (book) => setBooks([book,...books]); // add book
+
+  const navigate = useNavigate();
+
     const [data,setData] = useState({
+        bookImg: "",
         bookTitle: "",
         author: "",
         publisher: "",
         writeUp: "",
-        price : Number,
-        quantity: Number,
+        price : "",
+        quantity: "",
         tags: "",
     })
 
@@ -17,15 +26,34 @@ const NewProdForm = () => {
         setData({...data, [evt.target.name] : evt.target.value})
     }
 
-    const handleAddProduct = async (evt) => {
-        evt.preventDefault();
-        alert("form submitted")
-    }
+
+    const handleAddProduct = async (event) => {
+        event.preventDefault()
+        const response = await fetch("/api/books", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+          });
+          const book = await response.json();
+          addBook(book);
+        console.log("new book submitted");
+        navigate('/admin');
+      };
 
     return (
         <div>
             <h1> New Prod Form</h1>
-                <form>
+                    <label>
+                        bookImg : 
+                        <input 
+                        type="text" 
+                        name="bookImg" 
+                        onChange={handleChange}
+                        value={data.bookImg}/>
+                    </label>
+                    <br></br>
                     <label>
                         bookTitle : 
                         <input 
@@ -59,7 +87,7 @@ const NewProdForm = () => {
                         cols={40}
                         rows={4}
                         type="text" 
-                        name="writeup" 
+                        name="writeUp" 
                         onChange={handleChange}
                         value={data.writeUp}/>
                     </label>
@@ -92,7 +120,6 @@ const NewProdForm = () => {
                     </label>
                     <br></br>
                     <button type="submit" onClick={handleAddProduct}>Add New Product</button>
-                </form>
             
         </div>
     );

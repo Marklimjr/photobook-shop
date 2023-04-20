@@ -8,6 +8,11 @@ const bookSchema = new Schema(
       required: true,
     },
 
+    bookImg: {
+      type: String,
+      require: true,
+    },
+
     author: {
       type: String,
       required: true,
@@ -33,7 +38,7 @@ const bookSchema = new Schema(
     },
 
     tags: {
-      type: Array,
+      type: String,
     },
   },
   {
