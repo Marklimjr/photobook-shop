@@ -11,7 +11,10 @@ const MainStore = () => {
             <NavBar />
                 <h1>Main Store Page</h1>
                 <Cart />
+                <div >
                 <ProductGrid />
+                </div>
+                
                 
                 
         </div>

@@ -19,14 +19,14 @@ export default function ProductGrid() {
   
      return (
       <>
-       <ul className="CustomGrid" >
+       <div className='flex flex-wrap'>
          {books.map((book) => (
            <div key={book._id}>
              <ProductSingle book={book} />
            </div>
          ))}
          
-       </ul>
+       </div>
        {/* <Link className="CustomGridLinks" to={`/books/${selectedBook?._id}`} books={books} underline="none"/>
    */}
       </>
