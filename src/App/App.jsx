@@ -15,7 +15,7 @@ const App = () => {
     <React.StrictMode>
       <BrowserRouter>
        <Routes>
-      
+
           <Route path="/" element={<MainStore />} />
 
           <Route path="/admin" element={<ProdMgmt />} />
