@@ -1,4 +1,5 @@
 import React, { useReducer, useContext, createContext, useState } from 'react'
+import { Link } from 'react-router-dom';
 import './Cart.css'
 
 const CartStateContext = createContext();
@@ -9,12 +10,22 @@ const reducer = (state, action) => {
     switch(action.type) {
 
         case "ADD":
-            return [...state, action.item];
+            return [...state, {...action.item, quantity: 1}];
 
         case "REMOVE":
             const newArr = [...state];
             newArr.splice(action.index, 1)
             return newArr;
+
+        case "UPDATE_QUANTITY":
+            const updatedArr = [...state];
+            const index = updatedArr.findIndex(
+            (item) => item.id === action.itemId
+            );
+            if (index >= 0) {
+                updatedArr[index].quantity = action.quantity;
+            }
+                return updatedArr;
 
         default: 
             throw new Error(`unknown action ${action.type}`)
@@ -41,16 +52,17 @@ export const useDispatchCart = () => useContext(CartDispatchContext)
 
 const CartItem = ({ product, index, handleRemove}) => {
 
-    const [quantity, setQuantity] = useState(1);
+    const dispatch = useDispatchCart();
+    const [quantity, setQuantity] = useState(product.quantity);
 
-    const handleAddQuantity = () => {
-        setQuantity(quantity + 1);
-      };
-    
-      const handleReduceQuantity = () => {
-        if (quantity > 1) {
-          setQuantity(quantity - 1);
-        }
+      const handleQuantityChange = (event) => {
+        const newQuantity = parseInt(event.target.value, 10);
+        setQuantity(newQuantity);
+        dispatch({
+          type: "UPDATE_QUANTITY",
+          itemId: product.id,
+          quantity: newQuantity,
+        });
       };
 
     return (
@@ -66,11 +78,14 @@ const CartItem = ({ product, index, handleRemove}) => {
                 })}
               </dd>
               <div>
-                <button onClick={handleReduceQuantity}>-</button>
-                {quantity}
-                <button onClick={handleAddQuantity}>+</button>
-               </div>
-            <button onClick={handleRemove}>Remove from cart</button>
+                <input
+                type="number"
+                value={quantity}
+                min="1"
+                onChange={handleQuantityChange}
+            />
+            </div>
+        <button onClick={handleRemove}>Remove from cart</button>
           </div>
       </article>
     );
@@ -83,7 +98,8 @@ const CartItem = ({ product, index, handleRemove}) => {
 const Cart = ({setIsShowCart}) => {
     const items = useCart();
     const dispatch = useDispatchCart();
-    const totalPrice = items.reduce((total, b) => total + b.price, 0)
+    const totalPrice = items.reduce(
+        (total, b) => total + b.price * b.quantity, 0);
 
     const handleRemove = index => {
         dispatch({ type: "REMOVE", index})
@@ -135,6 +151,9 @@ const Cart = ({setIsShowCart}) => {
                             setIsShowCart={setIsShowCart}
                         />
                     ))}
+                    <Link to="/checkout">
+                        <button>Proceed to Checkout</button>
+                    </Link> 
             </div>
         </div>
     );
