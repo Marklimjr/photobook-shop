@@ -1,10 +1,11 @@
 import React from 'react';
 import "./NavBar.css";
 import { Link } from 'react-router-dom';
+import { useCart } from '../Cart/Cart';
 
 const NavBar = ({cart, setIsShowCart}) => {
+    const items = useCart();
 
-    const totalItemsInCart = cart.reduce((total, item) => total + item.quantity, 0);
 
     return (
         <div className='NavBar'>
@@ -12,9 +13,9 @@ const NavBar = ({cart, setIsShowCart}) => {
             <h4>New In</h4>
             <h4>Sale</h4>
             <h4>Log In</h4>
-            <div>
+            <div> 
             <h4 className='relative' onClick={() => setIsShowCart(true)}>
-            Cart {totalItemsInCart > 0 && <span>{totalItemsInCart}</span>}
+            Cart ({items.length})
             </h4>
             </div>
             <h4>Search</h4>

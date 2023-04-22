@@ -3,16 +3,16 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ProductSingle from './ProductSingle'
 
-export default function ProductGrid({handleAddToCart, books, setBooks, isAddingToCart}) {
+export default function ProductGrid({handleAddToCart,isAddingToCart}) {
     //! show the list of artworks
-    //  const [books, setBooks] = useState([{ _id: "" }]);
-     
-    //  useEffect(() => {
-    //    fetch("/api/books")
-    //      .then((response) => response.json())
-    //      .then((data) => setBooks(data));
-    //  }, []);
+     const [books, setBooks] = useState([{ _id: "" }]); 
   
+    useEffect(() => {
+      fetch("/api/books")
+        .then((response) => response.json())
+        .then((data) => setBooks(data));
+    }, []);
+
     //   const [selectedBook, setSelectedBook] = useState(null);
   
     //   const onClick = (id) => setSelectedBook(books.find((b) => b._id === id));
@@ -23,9 +23,6 @@ export default function ProductGrid({handleAddToCart, books, setBooks, isAddingT
          {books.map((book) => (
            <div key={book._id}>
              <ProductSingle  
-             isAddingToCart = {isAddingToCart} 
-             handleAddToCart={handleAddToCart} 
-             books={books} 
              book={book}
              />
            </div>
