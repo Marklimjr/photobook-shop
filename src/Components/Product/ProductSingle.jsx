@@ -1,7 +1,19 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useDispatchCart } from '../Cart/Cart';
+import * as ordersAPI from "../../utilities/orders-api"
 
-const ProductSingle = ({book}) => {
+
+
+const ProductSingle = ({book, cart, setCart}) => {
+
+    useEffect(function() {
+        async function getCart() {
+            const cart = await ordersAPI.getCart();
+            setCart(cart);
+        }
+        getCart();
+    }, [])
     
     const dispatch = useDispatchCart();
 

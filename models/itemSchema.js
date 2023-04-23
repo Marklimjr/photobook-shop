@@ -1,9 +1,9 @@
+const mongoose = require("mongoose");
 const Schema = require("mongoose").Schema;
 
 const itemSchema = new Schema(
   {
     bookTitle: { type: String, required: true },
-    emoji: String,
     price: { type: Number, required: true, default: 0 },
   },
   {
