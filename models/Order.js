@@ -21,5 +21,5 @@ const orderDetailSchema = mongoose.Schema({
   },
 });
 
-const OrderDetailSchema = mongoose.Model("orderDetails", orderDetailSchema);
-module.exports = { OrderDetailSchema };
+const OrderDetails = mongoose.model("orderDetails", orderDetailSchema);
+module.exports = { OrderDetails };

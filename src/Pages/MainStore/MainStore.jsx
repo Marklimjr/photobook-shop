@@ -4,7 +4,7 @@ import NavBar from '../../Components/NavBar/NavBar';
 import ProductGrid from '../../Components/Product/ProductGrid';
 import Cart from '../../Components/Cart/Cart';
 
-const MainStore = () => {
+const MainStore = ({user, setUser}) => {
 
     const [isShowCart,setIsShowCart] = useState(false);
 
@@ -20,6 +20,8 @@ const MainStore = () => {
         <div className='MainStore'>
             <NavBar 
             setIsShowCart={setIsShowCart}
+            user={user}
+            setUser={setUser}
             />
                 <h1>Main Store Page</h1>
                 <div >

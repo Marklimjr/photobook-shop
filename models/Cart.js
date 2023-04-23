@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
-const { OrderDetailSchema } = require("./Order");
+const { OrderDetails } = require("./Order").OrderDetails.Schema;
 
 const cartSchema = mongoose.Schema({
   cartDetails: [
     {
-      type: OrderDetailSchema,
+      type: OrderDetails,
     },
   ],
 });
 
-const Cart = mongoose.Model("carts", cartSchema);
+const Cart = mongoose.model("carts", cartSchema);
 module.exports = { Cart };

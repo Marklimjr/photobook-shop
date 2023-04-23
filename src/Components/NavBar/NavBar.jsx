@@ -2,9 +2,16 @@ import React from 'react';
 import "./NavBar.css";
 import { Link } from 'react-router-dom';
 import { useCart } from '../Cart/Cart';
+import { logout } from '../../utilities/users-service';
 
-const NavBar = ({cart, setIsShowCart}) => {
+const NavBar = ({cart, setIsShowCart, user, setUser}) => {
     const items = useCart();
+
+    const handleLogout = async (user) => {
+        logout();
+        setUser(null);
+        console.log("user has been logged out successfully.");
+      };
 
 
     return (
@@ -12,7 +19,15 @@ const NavBar = ({cart, setIsShowCart}) => {
             <h4>Shop All</h4>
             <h4>New In</h4>
             <h4>Sale</h4>
-            <h4>Log In</h4>
+                {user ? ( 
+                    <Link to={`/users/logout`}>
+                        <h4 onClick={handleLogout}> Log Out </h4>
+                    </Link>
+                ): 
+                <Link to={`/users/login`}>
+                    <h4>Log In</h4>
+                </Link>
+                 }
             <div> 
             <h4 className='relative' onClick={() => setIsShowCart(true)}>
             Cart ({items.length})

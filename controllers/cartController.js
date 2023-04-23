@@ -3,7 +3,16 @@ const { Book } = require(".././models/Book");
 
 const addToCart = async (req, res) => {
   try {
-    res.send("this is cart");
+    const product = await Book.findById(req.body._productId);
+
+    const cartDetails = {
+      _product: req.body._productId,
+      quantity: req.body.quantity,
+      price: product.price,
+      amount: product.price * req.body.quantity,
+    };
+
+    Cart.findOneAndUpdate;
 
     //find and update quantity if item exist already in cart
     // push item to cart if item doesn't exist in cart
