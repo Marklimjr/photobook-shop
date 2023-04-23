@@ -1,21 +1,28 @@
 const { Cart } = require(".././models/Cart");
-const { Book } = require(".././models/Book");
+const { Book } = require("../models/Book");
+
+const populate = {
+  path: "cartDetails",
+  populate: {
+    path: "_book",
+    model: "book",
+  },
+};
 
 const addToCart = async (req, res) => {
   try {
-    const product = await Book.findById(req.body._productId);
+    const customerCart = await Cart.findOne({ _customerId: req.userId });
+    const book = await Book.findById(req.body._bookId);
 
     const cartDetails = {
-      _product: req.body._productId,
+      _book: req.body._bookId,
       quantity: req.body.quantity,
-      price: product.price,
-      amount: product.price * req.body.quantity,
+      price: book.price,
+      amount: book.price * req.body.quantity,
     };
-
-    Cart.findOneAndUpdate;
-
-    //find and update quantity if item exist already in cart
-    // push item to cart if item doesn't exist in cart
+    // if customer cart exists
+    if (customerCart) {
+    }
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
