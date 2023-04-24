@@ -5,12 +5,10 @@ import ProductGrid from '../../Components/Product/ProductGrid';
 import Cart from '../../Components/Cart/Cart';
 
 const MainStore = ({user, setUser}) => {
-    //state for side slider
+
     const [isShowCart,setIsShowCart] = useState(false);
 
-    //state for general cart
-    const [cart, setCart] = useState(null);
-
+    const [cart,setCart] = useState([]);
     const [books, setBooks] = useState([{ _id: "" }]);
      
 
@@ -27,9 +25,7 @@ const MainStore = ({user, setUser}) => {
             />
                 <h1>Main Store Page</h1>
                 <div >
-                <ProductGrid
-                cart={cart}
-                setCart={setCart}
+                <ProductGrid  
                 />
                 </div>
                 {isShowCart && <Cart setIsShowCart={setIsShowCart}/>}

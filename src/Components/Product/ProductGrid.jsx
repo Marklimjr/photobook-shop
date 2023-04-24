@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ProductSingle from './ProductSingle'
 
-export default function ProductGrid({ cart, setCart}) {
+export default function ProductGrid({handleAddToCart,isAddingToCart}) {
     //! show the list of artworks
      const [books, setBooks] = useState([{ _id: "" }]); 
   
-    // useEffect(() => {
-    //   fetch("/api/books")
-    //     .then((response) => response.json())
-    //     .then((data) => setBooks(data));
-    // }, []);
+    useEffect(() => {
+      fetch("/api/books")
+        .then((response) => response.json())
+        .then((data) => setBooks(data));
+    }, []);
 
     //   const [selectedBook, setSelectedBook] = useState(null);
   
@@ -22,9 +22,7 @@ export default function ProductGrid({ cart, setCart}) {
        <div className='flex flex-wrap'>
          {books.map((book) => (
            <div key={book._id}>
-             <ProductSingle
-             cart={cart}
-             setCart={setCart}  
+             <ProductSingle  
              book={book}
              />
            </div>

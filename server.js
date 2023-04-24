@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, "dist")));
 
 app.use("/api/users", userRouter);
 app.use("/api/books", bookRouter);
-app.use("/api/orders", orderRouter);
+app.use("/api/order", orderRouter);
 
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
