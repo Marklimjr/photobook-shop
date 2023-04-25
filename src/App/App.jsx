@@ -13,6 +13,7 @@ import ProductIndex from '../Components/ModifyProduct/ProductIndex';
 import SignUpForm from '../Components/SignUpForm/SignUpForm';
 import LogInForm from '../Components/LoginForm/LogInForm';
 import LogOutMsg from '../Components/LogOutMsg/LogOutMsg';
+import FavouritesPage from '../Components/FavourtiesPage/FavouritesPage';
 
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/users/signup" element={<SignUpForm />} />
           <Route path="/users/login" element={<LogInForm setUser={setUser}/>} />
           <Route path="/users/logout" element={<LogOutMsg />} />
+          <Route path="/users/favourites" element={<FavouritesPage user={user}/>} />
 
           <Route path="/admin" element={<ProdMgmt />} />
           <Route path="/admin/new" element={<NewProdForm />} />

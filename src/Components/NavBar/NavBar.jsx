@@ -28,7 +28,14 @@ const NavBar = ({cart, setIsShowCart, user, setUser}) => {
                     <h4>Log In</h4>
                 </Link>
                  }
-            <div> 
+            
+            {user ? (
+                <Link to={`/users/favourites`}> 
+                     <h4> Favourites </h4>
+                </Link>
+            ) : <h4></h4> }
+            
+            <div>
             <h4 className='relative' onClick={() => setIsShowCart(true)}>
             Cart ({items.length})
             </h4>

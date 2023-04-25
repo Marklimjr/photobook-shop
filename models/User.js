@@ -21,12 +21,21 @@ const usersSchema = new Schema(
       minLength: 5,
       required: true,
     },
+
+    favouriteBooks: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Book",
+      },
+    ],
+
     userRole: {
       type: String,
       required: true,
       enum: ["user", "admin"],
     },
   },
+
   {
     timestamps: {
       createdAt: "created_at",

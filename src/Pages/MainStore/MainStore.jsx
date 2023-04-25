@@ -5,6 +5,7 @@ import ProductGrid from '../../Components/Product/ProductGrid';
 import Cart from '../../Components/Cart/Cart';
 
 const MainStore = ({user, setUser}) => {
+    
 
     const [isShowCart,setIsShowCart] = useState(false);
 
@@ -23,10 +24,11 @@ const MainStore = ({user, setUser}) => {
             user={user}
             setUser={setUser}
             />
-                <h1>Main Store Page</h1>
+            <h1>Main Store Page</h1>
                 <div >
-                <ProductGrid  
-                />
+                    <ProductGrid  
+                    user={user}
+                    />
                 </div>
                 {isShowCart && <Cart setIsShowCart={setIsShowCart}/>}
 
