@@ -18,13 +18,12 @@ const MainStore = ({user, setUser}) => {
 
     return (
 
-        <div className='MainStore'>
+        <div className='bg-amber-50'>
             <NavBar 
             setIsShowCart={setIsShowCart}
             user={user}
             setUser={setUser}
             />
-            <h1>Main Store Page</h1>
                 <div >
                     <ProductGrid  
                     user={user}
