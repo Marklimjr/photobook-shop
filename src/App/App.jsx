@@ -31,7 +31,7 @@ const App = () => {
           <Route path="/users/signup" element={<SignUpForm />} />
           <Route path="/users/login" element={<LogInForm setUser={setUser}/>} />
           <Route path="/users/logout" element={<LogOutMsg />} />
-          <Route path="/users/favourites" element={<FavouritesPage user={user}/>} />
+          <Route path="/users/favourites" element={<FavouritesPage user={user} setUser={setUser}/>} />
 
           <Route path="/books/:id" element={<ProductDetail user={user} setUser={setUser}/>} />
 

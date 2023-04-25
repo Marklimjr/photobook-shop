@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
+import Cart from "../../Components/Cart/Cart"
+import NavBar from '../NavBar/NavBar';
 
 
-const FavouritesPage = ({user}) => {
+const FavouritesPage = ({user, setUser}) => {
+
+const [isShowCart,setIsShowCart] = useState(false);
 
 const userId = user._id
 console.log(JSON.stringify(user,null,2))
@@ -46,6 +50,11 @@ const deleteFavouriteBook = async (bookId) => {
 
     return (
         <div>
+          <NavBar
+          setIsShowCart={setIsShowCart}
+          user={user}
+          setUser={setUser}
+          />
           <h1>Favourites Page</h1>
           {favouriteBooks.map((fav) => (
             <div
@@ -66,6 +75,7 @@ const deleteFavouriteBook = async (bookId) => {
               </button>
             </div>
           ))}
+          {isShowCart && <Cart setIsShowCart={setIsShowCart}/>}
         </div>
       );
 }
