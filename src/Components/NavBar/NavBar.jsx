@@ -16,7 +16,7 @@ const NavBar = ({cart, setIsShowCart, user, setUser}) => {
 
     return (
         <div className='NavBar'>
-            <h4>Shop All</h4>
+            <Link to={`/`}><h4>Shop All</h4></Link>
             <h4>New In</h4>
             <h4>Sale</h4>
                 {user ? ( 
@@ -28,18 +28,13 @@ const NavBar = ({cart, setIsShowCart, user, setUser}) => {
                     <h4>Log In</h4>
                 </Link>
                  }
-            
             {user ? (
                 <Link to={`/users/favourites`}> 
                      <h4> Favourites </h4>
                 </Link>
             ) : <h4></h4> }
-            
-            <div>
-            <h4 className='relative' onClick={() => setIsShowCart(true)}>
-            Cart ({items.length})
-            </h4>
-            </div>
+
+            <h4 className='relative' onClick={() => setIsShowCart(true)}>Cart ({items.length})</h4>
             <h4>Search</h4>
             <h4>WishList</h4>
             <Link to="/admin">

@@ -14,6 +14,8 @@ import SignUpForm from '../Components/SignUpForm/SignUpForm';
 import LogInForm from '../Components/LoginForm/LogInForm';
 import LogOutMsg from '../Components/LogOutMsg/LogOutMsg';
 import FavouritesPage from '../Components/FavourtiesPage/FavouritesPage';
+import ProductDetail from '../Components/Product/ProductDetail';
+import NavBar from '../Components/NavBar/NavBar';
 
 
 const App = () => {
@@ -24,7 +26,6 @@ const App = () => {
     <React.StrictMode>
       <BrowserRouter>
        <Routes>
-
           <Route path="/" element={<MainStore user={user} setUser={setUser}/>} />
 
           <Route path="/users/signup" element={<SignUpForm />} />
@@ -32,10 +33,11 @@ const App = () => {
           <Route path="/users/logout" element={<LogOutMsg />} />
           <Route path="/users/favourites" element={<FavouritesPage user={user}/>} />
 
+          <Route path="/books/:id" element={<ProductDetail user={user} setUser={setUser}/>} />
+
           <Route path="/admin" element={<ProdMgmt />} />
           <Route path="/admin/new" element={<NewProdForm />} />
           <Route path="/admin/:id/edit" element={<ModifyProduct />} />
-          <Route path="/admin/index" element={<ProductIndex />} />
 
         </Routes>
       </BrowserRouter>

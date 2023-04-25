@@ -1,5 +1,6 @@
 import { useDispatchCart } from '../Cart/Cart';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const ProductSingle = ({book, user}) => {
     
@@ -38,7 +39,6 @@ const ProductSingle = ({book, user}) => {
               {error}
             <h3>Book Title : {book.bookTitle}</h3>
             <h3>Price : ${book.price}</h3>
-            <h3>Quantity: {book.quantity}</h3>
             <button
             onClick={() => addToCart(book)} 
             className='bg-gray-300 w-full rounded-lg py-1 mt-auto mb-2 hover: bg-gray-500:'>
@@ -52,7 +52,9 @@ const ProductSingle = ({book, user}) => {
                 add to Favourites
             </button> : <></>}
             
-
+            <Link to={`/books/${book._id}`} underline="none">
+              <h3>Book Details</h3>
+            </Link>
         </div>
             
         

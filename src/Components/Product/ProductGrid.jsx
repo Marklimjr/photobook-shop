@@ -28,8 +28,6 @@ export default function ProductGrid({user}) {
          ))}
          
        </div>
-       {/* <Link className="CustomGridLinks" to={`/books/${selectedBook?._id}`} books={books} underline="none"/>
-   */}
       </>
      );
   }

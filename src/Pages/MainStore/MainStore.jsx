@@ -32,9 +32,6 @@ const MainStore = ({user, setUser}) => {
                 </div>
                 {isShowCart && <Cart setIsShowCart={setIsShowCart}/>}
 
-                
-                
-                
         </div>
     );
 };
