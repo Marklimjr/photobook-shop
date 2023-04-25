@@ -7,12 +7,13 @@ const NewProdForm = () => {
 
   const [books, setBooks] = useState([]);
   
-  const addBook = (book) => setBooks([book,...books]); // add book
+  const addBook = (book) => setBooks([book,...books]); 
 
   const navigate = useNavigate();
 
     const [data,setData] = useState({
         bookImg: "",
+        bookAltImg: "",
         bookTitle: "",
         author: "",
         publisher: "",
@@ -44,85 +45,6 @@ const NewProdForm = () => {
 
     return (
         <div>
-            <h1> New Prod Form</h1>
-                    <label>
-                        bookImg : 
-                        <input 
-                        type="text" 
-                        name="bookImg" 
-                        onChange={handleChange}
-                        value={data.bookImg}/>
-                    </label>
-                    <br></br>
-                    <label>
-                        bookTitle : 
-                        <input 
-                        type="text" 
-                        name="bookTitle" 
-                        onChange={handleChange}
-                        value={data.bookTitle}/>
-                    </label>
-                    <br></br>
-                    <label>
-                        author : 
-                        <input 
-                        type="text" 
-                        name="author" 
-                        onChange={handleChange}
-                        value={data.author}/>
-                    </label>
-                    <br></br>
-                    <label>
-                        publisher : 
-                        <input 
-                        type="text" 
-                        name="publisher" 
-                        onChange={handleChange}
-                        value={data.publisher}/>
-                    </label>
-                    <br></br>
-                    <label>
-                        writeup : 
-                        <textarea
-                        cols={40}
-                        rows={4}
-                        type="text" 
-                        name="writeUp" 
-                        onChange={handleChange}
-                        value={data.writeUp}/>
-                    </label>
-                    <br></br>
-                    <label>
-                        price : 
-                        <input 
-                        type="number" 
-                        name="price" 
-                        onChange={handleChange}
-                        value={data.price}/>
-                    </label>
-                    <br></br>
-                    <label>
-                        quantity : 
-                        <input 
-                        type="number" 
-                        name="quantity" 
-                        onChange={handleChange}
-                        value={data.quantity}/>
-                    </label>
-                    <br></br>
-                    <label>
-                        tags : 
-                        <input 
-                        type="text" 
-                        name="tags" 
-                        onChange={handleChange}
-                        value={data.tags}/>
-                    </label>
-                    <br></br>
-                    <button type="submit" onClick={handleAddProduct}>Add New Product</button>
-
-                    
-
             <div className="bg-grey-lighter min-h-screen flex flex-col">
                 <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
                     <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
@@ -137,6 +59,15 @@ const NewProdForm = () => {
                             value={data.bookImg}
                             required 
                             placeholder="Book Img Url" />
+                        <input 
+                            type="text"
+                            className="block border border-grey-light w-full p-3 rounded mb-4"
+                            name="bookAltImg"
+                            label="Book Alt Image"
+                            onChange={handleChange}
+                            value={data.bookAltImg}
+                            required 
+                            placeholder="Book Alt Img Url" />   
                         <input 
                             type="text"
                             className="block border border-grey-light w-full p-3 rounded mb-4"

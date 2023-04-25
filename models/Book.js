@@ -13,6 +13,11 @@ const bookSchema = new Schema(
       require: true,
     },
 
+    bookAltImg: {
+      type: String,
+      require: true,
+    },
+
     author: {
       type: String,
       required: true,
