@@ -15,7 +15,7 @@ import LogInForm from '../Components/LoginForm/LogInForm';
 import LogOutMsg from '../Components/LogOutMsg/LogOutMsg';
 import FavouritesPage from '../Components/FavourtiesPage/FavouritesPage';
 import ProductDetail from '../Components/Product/ProductDetail';
-import NavBar from '../Components/NavBar/NavBar';
+import AccessDeniedMsg from '../Components/AccessDeniedMsg/AccessDeniedMsg';
 
 
 const App = () => {
@@ -35,9 +35,10 @@ const App = () => {
 
           <Route path="/books/:id" element={<ProductDetail user={user} setUser={setUser}/>} />
 
-          <Route path="/admin" element={<ProdMgmt />} />
-          <Route path="/admin/new" element={<NewProdForm />} />
-          <Route path="/admin/:id/edit" element={<ModifyProduct />} />
+          <Route path="/admin" element={user && user.userRole == "admin" ? <ProdMgmt /> : <AccessDeniedMsg />}/>
+          <Route path="/admin/index" element={user && user.userRole == "admin" ? <ProductIndex /> : <AccessDeniedMsg />}/>
+          <Route path="/admin/new" element={user && user.userRole == "admin" ? <NewProdForm /> : <AccessDeniedMsg />}/>
+          <Route path="/admin/:id/edit" element={user && user.userRole == "admin" ? <ModifyProduct /> : <AccessDeniedMsg />} />
 
         </Routes>
       </BrowserRouter>
