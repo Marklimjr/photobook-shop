@@ -16,6 +16,7 @@ import LogOutMsg from '../Components/LogOutMsg/LogOutMsg';
 import FavouritesPage from '../Components/FavourtiesPage/FavouritesPage';
 import ProductDetail from '../Components/Product/ProductDetail';
 import AccessDeniedMsg from '../Components/AccessDeniedMsg/AccessDeniedMsg';
+import SearchResult from '../Components/SearchResult/SearchResult';
 
 
 const App = () => {
@@ -34,6 +35,9 @@ const App = () => {
           <Route path="/users/favourites" element={<FavouritesPage user={user} setUser={setUser}/>} />
 
           <Route path="/books/:id" element={<ProductDetail user={user} setUser={setUser}/>} />
+          <Route path="/books/search/sale" element = {<SearchResult user={user} setUser={setUser}/> } />
+          <Route path="/books/search/new" element = {<SearchResult user={user} setUser={setUser}/> } />
+          
 
           <Route path="/admin" element={user && user.userRole == "admin" ? <ProdMgmt /> : <AccessDeniedMsg />}/>
           <Route path="/admin/index" element={user && user.userRole == "admin" ? <ProductIndex /> : <AccessDeniedMsg />}/>

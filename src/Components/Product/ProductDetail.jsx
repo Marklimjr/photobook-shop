@@ -16,12 +16,26 @@ const ProductDetail = ({user, setUser}) => {
         dispatch({type: "ADD", item})
     }
 
+    const addFavouriteBook = async (bookId) => {
+      const userId = encodeURIComponent(user._id);
+      console.log(userId)
 
-    // useEffect(() => {
-    //     fetch(`/api/books/${id}`)
-    //       .then((response) => response.json())
-    //       .then((data) => setBooks(data));
-    //   }, []);    
+      try {
+        const response = await fetch(`/api/users/${userId}/favourites/${bookId}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+      //   const data = await response.json();
+      //   setFavouriteBooks([...favouriteBooks, data.book]);
+  
+      } catch (error) {
+        console.log(error.message)
+        setError(error.message)
+        
+      }
+    }; 
 
       useEffect(() => {
         const fetchBook = async () => {
@@ -54,6 +68,13 @@ const ProductDetail = ({user, setUser}) => {
                             className='bg-gray-300 w-full rounded-lg py-1 mt-auto mb-2 hover: bg-gray-500:'>
                             Add to Cart
                             </button>
+
+                            { user ? (<button
+                            onClick={() => addFavouriteBook(books._id)} 
+                            className='bg-gray-300 w-full rounded-lg py-1 mt-auto mb-2 hover: bg-gray-500:'>
+                            Add to Favourites
+                            </button>) : <></>}
+                            
                     </div>
             </a>
         </div>
