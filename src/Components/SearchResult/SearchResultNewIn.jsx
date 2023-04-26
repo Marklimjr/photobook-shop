@@ -4,12 +4,12 @@ import { useParams } from 'react-router-dom';
 import ProductSingle from '../Product/ProductSingle';
 
 const SearchResult = ({user, setUser}) => {
-    
+    const {tag} = useParams();
     const [isShowCart,setIsShowCart] = useState(false);
     const [books, setBooks] = useState([{ _id: "" }]); 
 
     useEffect(() => {
-        fetch(`/api/books/search/sale`)
+        fetch(`/api/books/search/new`)
           .then((response) => response.json())
           .then((data) => setBooks(data));
       }, []);
