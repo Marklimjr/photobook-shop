@@ -2,6 +2,8 @@ import NavBar from '../NavBar/NavBar';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductSingle from '../Product/ProductSingle';
+import Cart from '../Cart/Cart';
+
 
 const SearchResult = ({user, setUser}) => {
     const {tag} = useParams();

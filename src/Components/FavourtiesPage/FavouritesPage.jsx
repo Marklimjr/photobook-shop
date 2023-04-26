@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import Cart from "../../Components/Cart/Cart"
 import NavBar from '../NavBar/NavBar';
+import ProductSingleFav from '../Product/ProductSingleFav'
+
 
 
 const FavouritesPage = ({user, setUser}) => {
@@ -49,31 +51,23 @@ const deleteFavouriteBook = async (bookId) => {
   }, [])
 
     return (
-        <div>
+        <div className='bg-amber-50'>
           <NavBar
           setIsShowCart={setIsShowCart}
           user={user}
           setUser={setUser}
           />
-          <h1>Favourites Page</h1>
-          {favouriteBooks.map((fav) => (
-            <div
-              key={fav._id}
-              className="flex-1 flex flex-col items-center min-w-[250px] border border-yellow-200 px-2 mx-2"
-            >
-              <h3>Book Title: {fav.bookTitle}</h3>
-              <h3>Price: ${fav.price}</h3>
-              <h3>Quantity: {fav.quantity}</h3>
-              <button className="bg-gray-300 w-full rounded-lg py-1 mt-auto mb-2 hover:bg-gray-500">
-                Add to Cart
-              </button>
-              <button 
-              
-              onClick={()=>{deleteFavouriteBook(fav._id)}}
-              className="bg-gray-300 w-full rounded-lg py-1 mt-auto mb-2 hover:bg-gray-500">
-                Remove from Favourites
-              </button>
-            </div>
+
+          <h1>Favourites</h1>
+
+          {favouriteBooks.map((book) => (
+              <div key={book._id}>
+                <ProductSingleFav
+                user={user}
+                book={book}
+                />
+              </div>
+            
           ))}
           {isShowCart && <Cart setIsShowCart={setIsShowCart}/>}
         </div>
