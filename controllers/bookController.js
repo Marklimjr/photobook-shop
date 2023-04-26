@@ -50,8 +50,11 @@ const deleteBook = async (req, res) => {
 
 const searchSale = async (req, res) => {
   try {
-    const searchForSale = await Book.find({ tags: { $regex: /sale/i } });
-    // The $regex operator and the "i" flag enable a case-insensitive search for the word "sale"
+    const findTag = req.params.tags;
+    const searchForSale = await Book.find({
+      tags: { $regex: new RegExp(findTag, "i") },
+    });
+    // The $regex operator with the "i" flag enables a case-insensitive search for the specified tag
     res.status(200).send(searchForSale);
   } catch (error) {
     res.status(400).json({ error: error.message });

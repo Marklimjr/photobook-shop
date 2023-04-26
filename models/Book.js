@@ -43,7 +43,7 @@ const bookSchema = new Schema(
     },
 
     tags: {
-      type: String,
+      type: [String],
     },
   },
   {

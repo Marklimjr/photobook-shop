@@ -12,23 +12,28 @@ const ProductIndex = () => {
          .then((data) => setBooks(data));
      }, []);
 
-     const handleDelete = async (id) => { 
-        try {
-          const response = await fetch(`/api/books/${id}`, {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
+    
+     const handleDelete = async (id) => {
+      try {
+        const response = await fetch(`/api/books/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (response.status === 200) {
+          setBooks(books.filter((book) => book._id !== id));
+        } else {
           const data = await response.json();
-          console.log(data);
-          navigate("/admin/index");
-        } catch (error) {
-          console.error(error);
+          console.error(data);
         }
-      };
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-    return (
+
+    return (  
         <div>
             <h1 className='flex justify-center items-center py-4 text-xl'> Product Index</h1>
             <div>
@@ -42,7 +47,7 @@ const ProductIndex = () => {
                 <button type="button" className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-2 py-2 mr-2 mb-2">
                   Edit</button>
                 </Link>
-                <button onClick={() => handleDelete(artwork._id)}
+                <button onClick={() => handleDelete(book._id)}
                 className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-2 mr-2 mb-2"
                 >Delete</button>
             </div> 

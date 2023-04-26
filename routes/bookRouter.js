@@ -7,6 +7,6 @@ router.put("/:id", bookController.update);
 router.get("/", bookController.index);
 router.get("/:id", bookController.show);
 router.delete("/:id", bookController.deleteBook);
-router.get("/sale", bookController.searchSale);
+router.get("/search/:tags", bookController.searchSale);
 
 module.exports = router;
