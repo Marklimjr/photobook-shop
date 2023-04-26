@@ -8,10 +8,11 @@ import ProductSingleFav from '../Product/ProductSingleFav'
 const FavouritesPage = ({user, setUser}) => {
 
 const [isShowCart,setIsShowCart] = useState(false);
+const [favouriteBooks, setFavouriteBooks] = useState([])
 
 const userId = user._id
+
 console.log(JSON.stringify(user,null,2))
-const [favouriteBooks, setFavouriteBooks] = useState([])
 const fetchFavouriteBooks = async () => {
     try {
       const response = await fetch(`/api/users/${userId}/favourites`,
@@ -28,27 +29,9 @@ const fetchFavouriteBooks = async () => {
     
   };
 
-const deleteFavouriteBook = async (bookId) => {
-    try {
-      await fetch(`/api/users/${userId}/favourites/${bookId}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        }
-      });
-      setFavouriteBooks(favouriteBooks.filter((book) => book._id !== bookId));
-    } catch (error) {
-      console.error("Error deleting favourite book:", error);
-    }
-  };
-
   useEffect(() => {
     fetchFavouriteBooks();
   }, []);
-
-  useEffect(() => {
-    deleteFavouriteBook();
-  }, [])
 
     return (
         <div className='bg-amber-50'>
@@ -65,6 +48,8 @@ const deleteFavouriteBook = async (bookId) => {
                 <ProductSingleFav
                 user={user}
                 book={book}
+                favouriteBooks={favouriteBooks}
+                setFavouriteBooks={setFavouriteBooks}
                 />
               </div>
             

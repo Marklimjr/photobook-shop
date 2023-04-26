@@ -81,7 +81,7 @@ const SignUpForm = ({setUser}) => {
                             value={state.password}
                             onChange={handleChange}
                             required
-                            placeholder="Password" />
+                            placeholder="Password (min 5 char)" />
                         <input 
                             type="password"
                             className="block border border-grey-light w-full p-3 rounded mb-4"

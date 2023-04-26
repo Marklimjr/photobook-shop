@@ -22,8 +22,6 @@ const ProductSingle = ({book, user}) => {
               "Content-Type": "application/json",
             },
           });
-        //   const data = await response.json();
-        //   setFavouriteBooks([...favouriteBooks, data.book]);
     
         } catch (error) {
           console.log(error.message)

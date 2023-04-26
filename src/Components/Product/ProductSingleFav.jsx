@@ -1,8 +1,8 @@
 import { useDispatchCart } from '../Cart/Cart';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const ProductSingle = ({book, user}) => {
+const ProductSingle = ({book, user, favouriteBooks, setFavouriteBooks }) => {
     
 
     const [error, setError] = useState("")    
@@ -12,9 +12,30 @@ const ProductSingle = ({book, user}) => {
     }
 
 
+    const userId = user._id
+
+    const deleteFavouriteBook = async (bookId) => {
+      try {
+        await fetch(`/api/users/${userId}/favourites/${bookId}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          }
+        });
+        setFavouriteBooks(favouriteBooks.filter((book) => book._id !== bookId));
+      } catch (error) {
+        console.error("Error deleting favourite book:", error);
+      }
+    };
+
+    useEffect(() => {
+      deleteFavouriteBook();
+    }, [])
+
+
 
     return (
-      
+      <div className='bg-amber-50'>
         <div className="flex-1 flex flex-col items-center min-w-[250px]  px-2 mx-2 " >
 
             <div className="max-w-sm bg-amber-50 border border-gray-200 rounded-lg shadow ">
@@ -30,11 +51,16 @@ const ProductSingle = ({book, user}) => {
 
 
               <button 
+              onClick={() => deleteFavouriteBook(book._id)}
+              className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-amber-200 rounded-lg hover:bg-amber-400 focus:ring-4 focus:outline-none focus:ring-amber-300">
+              Remove from Favourites
+              </button> 
+
+              <button 
               onClick={() => addToCart(book)}
               className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-amber-200 rounded-lg hover:bg-amber-400 focus:ring-4 focus:outline-none focus:ring-amber-300">
               Add To Cart
               
-            {/* <svg aria-hidden="true" className="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg> */}
               </button> 
 
               <button 
@@ -42,19 +68,18 @@ const ProductSingle = ({book, user}) => {
               <Link to={`/books/${book._id}`} underline="none">
               View Book
               </Link>
-            {/* <svg aria-hidden="true" className="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg> */}
               </button> 
 
 
-    </div>
-</div>      
+          </div>
+      </div>      
 
 
 
 
 
         </div>
-            
+        </div>
         
     );
 };

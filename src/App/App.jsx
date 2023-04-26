@@ -18,6 +18,9 @@ import ProductDetail from '../Components/Product/ProductDetail';
 import AccessDeniedMsg from '../Components/AccessDeniedMsg/AccessDeniedMsg';
 import SearchResultSale from '../Components/SearchResult/SearchResultSale';
 import SearchResultNewIn from "../Components/SearchResult/SearchResultNewIn"
+import SearchPage from '../Components/SearchPage/SearchPage';
+import SearchResultAny from '../Components/SearchResult/SearchResultAny'
+import NoProductTag from '../Components/Product/NoProductTag';
 
 
 const App = () => {
@@ -36,8 +39,10 @@ const App = () => {
           <Route path="/users/favourites" element={<FavouritesPage user={user} setUser={setUser}/>} />
 
           <Route path="/books/:id" element={<ProductDetail user={user} setUser={setUser}/>} />
+          <Route path="/books/search" element={<SearchPage />} />
           <Route path="/books/search/sale" element = {<SearchResultSale user={user} setUser={setUser}/> } />
           <Route path="/books/search/new" element = {<SearchResultNewIn user={user} setUser={setUser}/> } />
+          <Route path="/books/search/:tag" element = {<SearchResultAny user={user} setUser={setUser}/> } />
           
 
           <Route path="/admin" element={user && user.userRole == "admin" ? <ProdMgmt /> : <AccessDeniedMsg />}/>

@@ -74,7 +74,8 @@ const NavBar = ({cart, setIsShowCart, user, setUser}) => {
                         {user ? 
                         (
                             <li>
-                                <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
+                                
+                                <a className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
                                     <Link to={`/users/favourites`}> 
                                     Favourites
                                     </Link>
@@ -93,7 +94,11 @@ const NavBar = ({cart, setIsShowCart, user, setUser}) => {
                         </a>
                         </li>
                         <li>
-                        <a href="#" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">Search</a>
+                        <a className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
+                        <Link to={`/books/search`}>
+                        Search
+                        </Link>
+                        </a>
                         </li>
                     </ul>
                     </div>
