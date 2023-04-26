@@ -133,7 +133,7 @@ const Cart = ({setIsShowCart}) => {
 
                 </h1>
                 <h1 className='bg-red-400 py-2 text-center text-white  '>
-                Placeholder Cart
+                Current Cart
                 </h1>
                     <p>
                         Total Price : {" "}
