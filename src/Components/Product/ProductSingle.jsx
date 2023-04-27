@@ -6,7 +6,9 @@ const ProductSingle = ({book, user}) => {
     
 
     const [error, setError] = useState("")    
+    
     const dispatch = useDispatchCart();
+
     const addToCart = (item) => {
         dispatch({type: "ADD", item})
     }

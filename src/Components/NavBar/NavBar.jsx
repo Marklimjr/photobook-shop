@@ -5,6 +5,7 @@ import { useCart } from '../Cart/Cart';
 import { logout } from '../../utilities/users-service';
 
 const NavBar = ({cart, setIsShowCart, user, setUser}) => {
+    
     const items = useCart();
 
     const handleLogout = async (user) => {
@@ -21,7 +22,6 @@ const NavBar = ({cart, setIsShowCart, user, setUser}) => {
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 ">
                     <a href="https://deck.sg/" className="flex items-center">
                         <img src="https://deck.sg/wp-content/themes/deck/img/logo.png" className="h-8 mr-3" alt="Flowbite Logo" />
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
                     </a>
                     <button data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-default" aria-expanded="false">
                     <span className="sr-only">Open main menu</span>
