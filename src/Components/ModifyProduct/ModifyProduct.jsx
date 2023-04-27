@@ -37,87 +37,11 @@ const ModifyProduct = () => {
       },
       body: JSON.stringify(books),
     });
-    navigate('/admin');
+    navigate('/admin/index');
   };
 
     return (
         <div>
-            <h1> Update Book Form</h1>
-                    <label>
-                        bookImg : 
-                        <input 
-                        type="text" 
-                        name="bookImg" 
-                        onChange={handleChange}
-                        value={books.bookImg}/>
-                    </label>
-                    <br></br>
-                    <label>
-                        bookTitle : 
-                        <input 
-                        type="text" 
-                        name="bookTitle" 
-                        onChange={handleChange}
-                        value={books.bookTitle}/>
-                    </label>
-                    <br></br>
-                    <label>
-                        author : 
-                        <input 
-                        type="text" 
-                        name="author" 
-                        onChange={handleChange}
-                        value={books.author}/>
-                    </label>
-                    <br></br>
-                    <label>
-                        publisher : 
-                        <input 
-                        type="text" 
-                        name="publisher" 
-                        onChange={handleChange}
-                        value={books.publisher}/>
-                    </label>
-                    <br></br>
-                    <label>
-                        writeup : 
-                        <textarea
-                        cols={40}
-                        rows={4}
-                        type="text" 
-                        name="writeUp" 
-                        onChange={handleChange}
-                        value={books.writeUp}/>
-                    </label>
-                    <br></br>
-                    <label>
-                        price : 
-                        <input 
-                        type="number" 
-                        name="price" 
-                        onChange={handleChange}
-                        value={books.price}/>
-                    </label>
-                    <br></br>
-                    <label>
-                        quantity : 
-                        <input 
-                        type="number" 
-                        name="quantity" 
-                        onChange={handleChange}
-                        value={books.quantity}/>
-                    </label>
-                    <br></br>
-                    <label>
-                        tags : 
-                        <input 
-                        type="text" 
-                        name="tags" 
-                        onChange={handleChange}
-                        value={books.tags}/>
-                    </label>
-                    <br></br>
-                    <button type="submit" onClick={handleUpdate}>Update Product Information</button>
 
               <div className="bg-grey-lighter min-h-screen flex flex-col">
                 <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
@@ -210,7 +134,7 @@ const ModifyProduct = () => {
                             type="submit"
                             onClick={handleUpdate}
                             className="w-full text-center py-3 rounded bg-green text-black hover:bg-green-dark focus:outline-none my-1"         
-                            >Submit New Product</button>
+                            >Modify Product Details</button>
                         </form>
                     </div>
                 </div>
